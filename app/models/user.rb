@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :books , through: :borrows, dependent: authors
+  has_many :borrows, dependent: :destroy
+  has_many :books , through: :borrows
 
 
   validates :name, presence: true
