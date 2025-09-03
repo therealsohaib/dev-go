@@ -1,6 +1,8 @@
 class Borrow < ApplicationRecord
   belongs_to :user
   belongs_to :book
+  scope :due, -> {where("due_date<?", Date.today)}
+  scope :by_user, ->(user_id) { where(user_id: user_id) }
 
 
   validates :book_id, uniqueness: { scope: :user_id }
